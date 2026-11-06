@@ -79,7 +79,7 @@ function home() {
     .map(([key, category]) => {
       const list = PRODUCTS.filter((product) => product.cat === key && product.condition === 'nuevo');
       const sample = list[0];
-      return `<a class="cat" href="colecciones/${category.handle}.html"><img src="${sample.img}" alt="" width="320" height="240" loading="lazy"><span class="cat__body"><strong>${category.name}</strong><small>${list.length} ${list.length === 1 ? 'modelo' : 'modelos'}</small></span></a>`;
+      return `<a class="cat" href="colecciones/${category.handle}.html"><span class="cat__media"><img src="${sample.img}" alt="" width="320" height="240" loading="lazy"></span><span class="cat__body"><strong>${category.name}</strong><small>${list.length} ${list.length === 1 ? 'modelo' : 'modelos'}</small></span></a>`;
     })
     .join('');
 
@@ -169,7 +169,7 @@ function home() {
   </div>
 </div></section>
 
-<section class="sec sec--dark maint" data-scrolly aria-labelledby="maint-title"><div class="wrap maint__in">
+<section class="sec sec--white maint" data-scrolly aria-labelledby="maint-title"><div class="wrap maint__in">
   <div class="maint__side">
     <span class="tag">Después de comprar</span>
     <h2 class="h-lg" id="maint-title">Mantenimiento para que tu equipo no pare.</h2>
@@ -410,7 +410,7 @@ function service({ slug, tag, title, text, visual, includes, how, benefits, ques
 ${includes ? `<section class="sec"><div class="wrap">${secHead({ tag: '¿Qué incluye?', title: includes.title })}<div class="services">${includes.items
     .map(([name, desc], index) => `<article class="service${index === 0 ? ' service--main' : ''}"><h3 class="h-md">${name}</h3><p class="lead">${desc}</p></article>`)
     .join('')}</div></div></section>` : ''}
-<section class="sec sec--dark"><div class="wrap">${secHead({ tag: '¿Cómo funciona?', title: how.title })}${steps(how.steps)}</div></section>
+<section class="sec sec--white"><div class="wrap">${secHead({ tag: '¿Cómo funciona?', title: how.title })}${steps(how.steps)}</div></section>
 <section class="sec"><div class="wrap">${secHead({ tag: 'Beneficios', title: benefits.title })}<ul class="promises" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 40px">${benefits.items
     .map(([icon, name, desc]) => `<li>${ic(icon)}<div><strong>${name}</strong><span>${desc}</span></div></li>`)
     .join('')}</ul></div></section>

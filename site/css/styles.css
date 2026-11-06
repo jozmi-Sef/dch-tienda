@@ -1308,8 +1308,10 @@ p {
 
 /* ---------- Franja de confianza ---------- */
 .trust {
+  padding-block-end: 18px;
   background: var(--navy-800);
   color: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 24px));
 }
 
 .trust__in {
@@ -1364,17 +1366,20 @@ p {
   padding: clamp(22px, 3vw, 36px);
   overflow: hidden;
   isolation: isolate;
-  clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%);
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  box-shadow: var(--shadow);
 }
 
 .choice__card--new {
-  background: var(--navy);
-  color: #fff;
+  border-top: 5px solid var(--navy);
 }
 
 .choice__card--used {
-  background: var(--cyan);
-  color: var(--navy-900);
+  border-color: var(--cyan);
+  border-top: 5px solid var(--cyan);
+  background: #f1fbfe;
 }
 
 .choice__imgs {
@@ -1386,13 +1391,13 @@ p {
   width: 112px;
   height: 112px;
   margin-inline-end: -18px;
-  border: 4px solid var(--navy);
+  border: 4px solid #fff;
   background: var(--paper-2);
   object-fit: cover;
 }
 
 .choice__card--used .choice__imgs img {
-  border-color: var(--cyan);
+  border-color: #f1fbfe;
 }
 
 .choice__card ul {
@@ -1496,6 +1501,34 @@ p {
 
 .cat--used:hover {
   background: #38c8f5;
+}
+
+/* Aviso "maqueta" sobre las fotos. Se apaga quitando la clase mock-notes del <body> (lib.js). */
+.cat__media {
+  position: relative;
+  display: block;
+}
+
+.mock-notes .card__media::after,
+.mock-notes .gallery__main::after,
+.mock-notes .cat__media::after {
+  content: 'MAQUETA · reemplazar por foto real';
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: 5px 8px;
+  background: rgb(0 12 58 / 82%);
+  color: #fff;
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.mock-notes .gallery__main::after {
+  padding: 8px 12px;
+  font-size: 0.6875rem;
 }
 
 /* ---------- Tarjeta de producto ---------- */
@@ -1915,11 +1948,11 @@ p {
 }
 
 .maint__note {
-  color: #b9c4e6;
+  color: var(--steel);
 }
 
 .maint__note a {
-  color: #fff;
+  color: var(--navy);
   text-decoration: underline;
 }
 
@@ -1928,13 +1961,13 @@ p {
   gap: 10px;
   width: min(100%, 360px);
   padding: 16px 18px;
-  border: 1.5px solid rgb(255 255 255 / 22%);
-  background: rgb(255 255 255 / 5%);
+  border: 1.5px solid var(--line);
+  background: var(--paper);
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
 }
 
 .ticket small {
-  color: #9fb0dd;
+  color: var(--steel);
   font-family: var(--f-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
@@ -1956,12 +1989,12 @@ p {
 
 .ticket__bar i {
   height: 6px;
-  background: rgb(255 255 255 / 18%);
+  background: var(--line);
   transition: background-color 0.3s ease;
 }
 
 .ticket__bar i.on {
-  background: var(--cyan);
+  background: var(--blue);
 }
 
 .maint__steps {
@@ -1983,11 +2016,11 @@ p {
 }
 
 .maint__steps::before {
-  background: rgb(255 255 255 / 14%);
+  background: var(--line);
 }
 
 .maint__steps::after {
-  background: var(--cyan);
+  background: var(--blue);
   transform: scaleY(var(--p, 1));
   transform-origin: top;
 }
@@ -2014,9 +2047,9 @@ p {
   place-items: center;
   width: 42px;
   height: 42px;
-  border: 3px solid rgb(255 255 255 / 25%);
-  background: var(--navy-900);
-  color: #fff;
+  border: 3px solid var(--line);
+  background: #fff;
+  color: var(--steel);
   font-family: var(--f-display);
   font-weight: 800;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
@@ -2024,9 +2057,9 @@ p {
 
 .mstep.is-active::before,
 .mstep.is-done::before {
-  border-color: var(--cyan);
-  background: var(--cyan);
-  color: var(--navy-900);
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
 }
 
 .mstep h3 {
@@ -2039,7 +2072,7 @@ p {
 
 .mstep p {
   max-width: 44ch;
-  color: #b9c4e6;
+  color: var(--steel);
   font-size: 1.0625rem;
 }
 
@@ -2229,9 +2262,9 @@ p {
   gap: 24px 48px;
   padding: clamp(26px, 4vw, 44px);
   overflow: hidden;
-  background: var(--red);
-  color: #fff;
-  clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%);
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
 }
 
 .news form {
@@ -2252,7 +2285,7 @@ p {
 .news small {
   display: block;
   margin-block-start: 10px;
-  opacity: 0.85;
+  color: var(--steel);
 }
 
 /* ---------- Pie ---------- */

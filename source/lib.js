@@ -302,7 +302,7 @@ ${extraHead}
 <link rel="stylesheet" href="${FONTS}">
 <link rel="stylesheet" href="${root}css/styles.css">
 </head>
-<body${bodyClass ? ` class="${bodyClass}"` : ''}>
+<body class="${['mock-notes', bodyClass].filter(Boolean).join(' ')}">
 ${sprite}
 <a class="skip" href="#main">Saltar al contenido</a>
 ${bare ? '' : header(root, current)}
