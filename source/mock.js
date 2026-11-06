@@ -18,8 +18,8 @@ const C = {
   box2: '#8fa8d6',
   navy: '#001a72',
   deep: '#000f45',
-  cyan: '#00b5ef',
-  red: '#e30613',
+  cyan: '#8ea9f2',
+  red: '#2f52d6', // acento de las maquetas: azul (el rojo queda solo para comprar)
   white: '#ffffff',
   ink: '#0a1030',
 };

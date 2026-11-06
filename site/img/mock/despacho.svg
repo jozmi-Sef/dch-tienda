@@ -10,7 +10,7 @@
        <rect x="0" y="40" width="300" height="104" rx="8" fill="#001a72"/>
        <path d="M300 60 h86 l54 46 v38 h-140z" fill="#001a72"/><path d="M318 72 h54 l36 32 h-90z" fill="#cbd9ee"/>
        <rect x="14" y="14" width="120" height="70" rx="3" fill="#d9b98d"/><rect x="144" y="26" width="90" height="58" rx="3" fill="#c9a574"/><rect x="20" y="-34" width="96" height="50" rx="3" fill="#e0c79c"/>
-       <rect x="0" y="120" width="440" height="14" fill="#000f45"/><rect x="8" y="64" width="150" height="10" fill="#e30613"/>
+       <rect x="0" y="120" width="440" height="14" fill="#000f45"/><rect x="8" y="64" width="150" height="10" fill="#2f52d6"/>
        <circle cx="86" cy="148" r="34" fill="#0a1030"/><circle cx="86" cy="148" r="15" fill="#cbd9ee"/>
        <circle cx="352" cy="148" r="34" fill="#0a1030"/><circle cx="352" cy="148" r="15" fill="#cbd9ee"/>
      </g>
@@ -20,12 +20,12 @@
     <rect x="-27" y="-9" width="25" height="9" rx="4.5" fill="#0a1030"/><rect x="2" y="-9" width="25" height="9" rx="4.5" fill="#0a1030"/>
     <rect x="-46" y="-170" width="16" height="80" rx="8" fill="#001a72"/><circle cx="-38" cy="-88" r="8.5" fill="#b87a52"/>
     <path d="M-32 -168 q0 -10 10 -10 h44 q10 0 10 10 v82 h-64z" fill="#001a72"/>
-    <path d="M-32 -168 q0 -10 10 -10 h10 l12 44 l12 -44 h10 q10 0 10 10 v80 h-64z" fill="#e30613"/><rect x="-32" y="-118" width="64" height="8" fill="#fff" opacity=".9"/>
+    <path d="M-32 -168 q0 -10 10 -10 h10 l12 44 l12 -44 h10 q10 0 10 10 v80 h-64z" fill="#2f52d6"/><rect x="-32" y="-118" width="64" height="8" fill="#fff" opacity=".9"/>
     
     <rect x="-7" y="-188" width="14" height="16" fill="#b87a52"/>
     <circle cx="0" cy="-202" r="22" fill="#b87a52"/>
     
-    <path d="M-27 -210 a27 27 0 0 1 54 0z" fill="#e30613"/><rect x="-32" y="-212" width="64" height="7" rx="3.5" fill="#e30613"/><rect x="-4" y="-240" width="8" height="30" rx="4" fill="#e30613" opacity=".6"/>
+    <path d="M-27 -210 a27 27 0 0 1 54 0z" fill="#2f52d6"/><rect x="-32" y="-212" width="64" height="7" rx="3.5" fill="#2f52d6"/><rect x="-4" y="-240" width="8" height="30" rx="4" fill="#2f52d6" opacity=".6"/>
     <g transform="translate(-34 -150)"><rect width="68" height="52" rx="3" fill="#d9b98d"/><rect x="0" y="0" width="68" height="12" fill="#c9a574"/><rect x="28" y="0" width="12" height="52" fill="#e8d3ae" opacity=".7"/></g>
     <rect x="-46" y="-170" width="16" height="60" rx="8" fill="#001a72"/><rect x="30" y="-170" width="16" height="60" rx="8" fill="#001a72"/>
   </g>
