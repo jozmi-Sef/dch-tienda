@@ -4,6 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { CATEGORIES, CATEGORY_GROUPS, PRODUCTS, NEW, USED, BRANDS, slugify } = require('./data.js');
 
 /* ---------- Datos de la tienda ---------- */
@@ -277,6 +278,12 @@ function footer(root) {
   <a class="wa-float" href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ic('whatsapp')}<span class="wa-float__long">Cotiza por WhatsApp</span><span class="wa-float__short">Cotiza</span></a>`;
 }
 
+/* ---------- Versión de los archivos ----------
+   Cada archivo lleva ?v=<huella> en su dirección. Si el contenido cambia, la dirección cambia
+   y el navegador descarga la versión nueva en lugar de usar una guardada en memoria. */
+const fingerprint = (text) => crypto.createHash('md5').update(text).digest('hex').slice(0, 8);
+const readAsset = (name) => fs.readFileSync(path.join(__dirname, 'assets', name), 'utf8');
+
 /* ---------- Plantilla de página ---------- */
 const FONTS = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400..700&display=swap';
 
@@ -300,7 +307,7 @@ ${extraHead}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${FONTS}">
-<link rel="stylesheet" href="${root}css/styles.css">
+<link rel="stylesheet" href="${root}css/styles.css?v=${fingerprint(readAsset('styles.css'))}">
 </head>
 <body class="${['mock-notes', bodyClass].filter(Boolean).join(' ')}">
 ${sprite}
@@ -312,8 +319,8 @@ ${body}
 ${bare ? '' : footer(root)}
 ${bare ? '' : cartDrawer(root) + mobileNav(root)}
 <div class="overlay" data-overlay></div>
-<script src="${root}js/catalog.js"></script>
-<script src="${root}js/app.js"></script>
+<script src="${root}js/catalog.js?v=${fingerprint(JSON.stringify(clientCatalog()))}"></script>
+<script src="${root}js/app.js?v=${fingerprint(readAsset('app.js'))}"></script>
 ${scripts}
 </body>
 </html>`;
