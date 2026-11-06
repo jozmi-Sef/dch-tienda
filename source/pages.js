@@ -31,10 +31,10 @@ const crumbs = (root, items, dark = false) =>
     .map(([label, href]) => `${ic('chev-right')}${href ? `<a href="${root}${href}">${esc(label)}</a>` : `<span aria-current="page">${esc(label)}</span>`}`)
     .join('')}</nav>`;
 
-const secHead = ({ tag, title, text, link, tagClass = '' }) =>
-  `<div class="sec-head"><div class="sec-head__text">${tag ? `<span class="tag ${tagClass}">${tag}</span>` : ''}<h2 class="h-lg">${title}</h2>${text ? `<p class="lead">${text}</p>` : ''}</div>${link || ''}</div>`;
+const secHead = ({ tag, title, text, link, tagClass = '', small = false }) =>
+  `<div class="sec-head"><div class="sec-head__text">${tag ? `<span class="tag ${tagClass}">${tag}</span>` : ''}<h2 class="${small ? 'h-md' : 'h-lg'}">${title}</h2>${text ? `<p class="lead">${text}</p>` : ''}</div>${link || ''}</div>`;
 
-const steps = (items) => `<ol class="steps">${items.map(([title, text]) => `<li class="step"><h3>${title}</h3><p>${text}</p></li>`).join('')}</ol>`;
+const steps = (items, extra = '') => `<ol class="steps ${extra}">${items.map(([title, text]) => `<li class="step"><h3>${title}</h3><p>${text}</p></li>`).join('')}</ol>`;
 
 const faq = (items) => `<div class="faq">${items.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join('')}</div>`;
 
@@ -65,7 +65,7 @@ const contactForm = (id = 'f') => `<form class="form" data-demo-form="Recibimos 
   <p class="mono" style="color:var(--steel)">Respuesta rápida en horario de atención. Sin compromiso.</p></form>`;
 
 const phero = ({ root, crumbItems, tag, title, text, actions = '', visual = '', split = false }) =>
-  `<section class="phero${split ? ' phero--split' : ''}"><div class="wrap phero__in">${split ? `<div style="display:grid;gap:16px;justify-items:start">` : ''}${crumbs(root, crumbItems, true)}${tag ? `<span class="tag">${tag}</span>` : ''}<h1 class="h-xl" style="font-size:clamp(2rem,4.6vw,3.75rem)">${title}</h1>${text ? `<p class="lead">${text}</p>` : ''}${actions ? `<div class="hero__cta">${actions}</div>` : ''}${split ? `</div><div>${visual}</div>` : ''}</div></section>`;
+  `<section class="phero${split ? ' phero--split' : ''}"><div class="wrap phero__in">${split ? `<div style="display:grid;gap:16px;justify-items:start">` : ''}${crumbs(root, crumbItems, true)}${tag ? `<span class="tag">${tag}</span>` : ''}<h1 class="h-xl" style="font-size:clamp(1.75rem,3.2vw,2.5rem)">${title}</h1>${text ? `<p class="lead">${text}</p>` : ''}${actions ? `<div class="hero__cta">${actions}</div>` : ''}${split ? `</div><div>${visual}</div>` : ''}</div></section>`;
 
 /* ---------- Home ---------- */
 function home() {
@@ -83,9 +83,17 @@ function home() {
     })
     .join('');
 
-  const moreCats = `<a class="cat cat--more" href="colecciones/todos.html"><strong>Todo el catálogo</strong><small style="color:#b9c4e6">${NEW.length} modelos nuevos</small>${ic('arrow-right')}</a><a class="cat cat--more cat--used" href="segunda-mano.html"><strong>Segunda mano</strong><small>${USED.length} equipos revisados</small>${ic('arrow-right')}</a>`;
+  const moreCats = `<a class="cat cat--more" href="colecciones/todos.html"><strong>Todo el catálogo</strong><small style="color:#b4bdcc">${NEW.length} modelos nuevos</small>${ic('arrow-right')}</a><a class="cat cat--more cat--used" href="segunda-mano.html"><strong>Segunda mano</strong><small>${USED.length} equipos revisados</small>${ic('arrow-right')}</a>`;
 
   const rail = (list, group) => list.map((product) => card(product, root, { group })).join('');
+
+  // "Más pedidos" muestra 8 productos: los marcados como más pedidos y, si faltan, otros nuevos con stock
+  const bestPlus = [...best, ...NEW.filter((product) => !product.best && !product.compareAt && product.stock === 'lima').slice(0, 8 - best.length)].slice(0, 8);
+  const shown = new Set([...bestPlus, ...offers, ...used].map((product) => product.id));
+  const moreList = Object.keys(CATEGORIES)
+    .map((key) => NEW.find((product) => product.cat === key && !shown.has(product.id)))
+    .filter(Boolean)
+    .slice(0, 8);
 
   const body = `
 <section class="hero">${gearSvg()}
@@ -112,71 +120,52 @@ function home() {
   <div class="trust__item">${ic('doc')}<div><strong>Boleta o factura</strong><span>Para personas y empresas</span></div></div>
 </div></section>
 
-<section class="sec"><div class="wrap">
-  ${secHead({ tag: 'Elige cómo comprar', title: 'Nuevo o de segunda mano, tú decides.' })}
-  <div class="choice">
-    <article class="choice__card choice__card--new">
-      <div class="choice__stat"><b class="num">${NEW.length}</b><span>modelos nuevos<br>con stock en Lima</span></div>
-      <span class="tag">Nuevas</span><h3 class="h-lg">Máquinas nuevas</h3>
-      <p class="lead">Powful, Ingco, Dong Cheng, Bomtex y más. Productos originales con respaldo de fabricante en equipos seleccionados.</p>
-      <ul><li>${ic('check')}Stock inmediato en Lima</li><li>${ic('check')}Boleta o factura</li><li>${ic('check')}Mantenimiento y repuestos</li></ul>
-      <a class="btn btn--red" href="colecciones/nuevos.html" style="justify-self:start">Ver máquinas nuevas ${ic('arrow-right')}</a>
-    </article>
-    <article class="choice__card choice__card--used">
-      <div class="choice__stat"><b class="num">${USED.length}</b><span>equipos revisados<br>disponibles hoy</span></div>
-      <span class="tag tag--navy">Segunda mano</span><h3 class="h-lg">Equipos revisados, con horas de uso a la vista</h3>
-      <p class="lead">Cada equipo se revisa antes de venderse. Ves su estado y sus horas de uso antes de pagar.</p>
-      <ul><li>${ic('check')}Estado y horas de uso a la vista</li><li>${ic('check')}Revisión antes de la entrega</li><li>${ic('check')}Precio menor al de un equipo nuevo</li></ul>
-      <a class="btn btn--navy" href="segunda-mano.html" style="justify-self:start">Ver segunda mano ${ic('arrow-right')}</a>
-    </article>
-  </div>
+<section class="sec" data-rail><div class="wrap">
+  ${secHead({ title: 'Lo que más se lleva', link: `<a class="link-arrow" href="colecciones/todos.html">Ver todo el catálogo ${ic('arrow-right')}</a>` })}
+  <div class="tabs" role="tablist" aria-label="Destacados" style="margin-bottom:20px"><button class="tab" role="tab" data-group="best" aria-selected="true">Más pedidos</button><button class="tab" role="tab" data-group="offers" aria-selected="false">Ofertas</button><button class="tab" role="tab" data-group="used" aria-selected="false">Segunda mano</button></div>
+  <div class="pgrid">${rail(bestPlus, 'best')}${rail(offers, 'offers')}${rail(used, 'used')}</div>
+</div></section>
+
+<section class="sec--tight"><div class="wrap duo">
+  <a class="duo__item" href="colecciones/nuevos.html"><b class="num">${NEW.length}</b><span><strong>Máquinas nuevas</strong>Con stock en Lima y respaldo de fabricante</span>${ic('arrow-right')}</a>
+  <a class="duo__item duo__item--used" href="segunda-mano.html"><b class="num">${USED.length}</b><span><strong>Segunda mano revisada</strong>Con estado y horas de uso a la vista</span>${ic('arrow-right')}</a>
 </div></section>
 
 <section class="sec sec--white"><div class="wrap">
-  ${secHead({ tag: 'Catálogo', title: 'Compra por categoría', link: `<a class="link-arrow" href="colecciones/todos.html">Ver todo el catálogo ${ic('arrow-right')}</a>` })}
+  ${secHead({ title: 'Compra por categoría', link: `<a class="link-arrow" href="colecciones/todos.html">Ver todo el catálogo ${ic('arrow-right')}</a>` })}
   <div class="cats">${catCards}${moreCats}</div>
 </div></section>
 
-<section class="sec" data-rail><div class="wrap">
-  ${secHead({ tag: 'Destacados', title: 'Lo que más se lleva', link: `<div class="rail-ctrl"><button type="button" data-rail-dir="-1" aria-label="Anteriores">${ic('arrow-left')}</button><button type="button" data-rail-dir="1" aria-label="Siguientes">${ic('arrow-right')}</button></div>` })}
-  <div class="tabs" role="tablist" aria-label="Destacados" style="margin-bottom:20px"><button class="tab" role="tab" data-group="best" aria-selected="true">Más pedidos</button><button class="tab" role="tab" data-group="offers" aria-selected="false">Ofertas</button><button class="tab" role="tab" data-group="used" aria-selected="false">Segunda mano</button></div>
-  <div class="rail">${rail(best, 'best')}${rail(offers, 'offers')}${rail(used, 'used')}</div>
+<section class="sec"><div class="wrap">
+  ${secHead({ title: 'Más equipos para tu obra', link: `<a class="link-arrow" href="colecciones/todos.html">Ver los ${NEW.length} modelos ${ic('arrow-right')}</a>` })}
+  <div class="pgrid">${moreList.map((product) => card(product, root)).join('')}</div>
 </div></section>
 
 <section class="brands" aria-label="Marcas que trabajamos"><div class="brands__track">${[0, 1]
     .map((copy) => `<div class="brands__set"${copy ? ' inert aria-hidden="true"' : ''}>${BRANDS.map((brand) => brandMark(brand)).join('')}</div>`)
     .join('')}</div></section>
 
-<section class="sec"><div class="wrap">
-  <div class="human">
-    ${photo(root, 'mostrador', 'Maqueta de foto de asesoría en mostrador', 'photo--cut')}
-    <div class="human__copy">
-      <span class="tag">Detrás del mostrador</span>
-      <h2 class="h-lg">Somos una familia del rubro. Te ayudamos a elegir bien.</h2>
-      <p class="lead">DCH nació del esfuerzo y las enseñanzas de nuestra familia en el rubro ferretero y de maquinaria. Desde 2019 atendemos a maestros de obra, técnicos, contratistas y ferreterías.</p>
-      <ul class="promises">
-        <li>${ic('wrench')}<div><strong>Asesoría real</strong><span>Te recomendamos la mejor opción según tu trabajo y tu presupuesto.</span></div></li>
-        <li>${ic('doc')}<div><strong>Cotización el mismo día</strong><span>Precio, disponibilidad y condiciones, sin vueltas.</span></div></li>
-        <li>${ic('shield')}<div><strong>Soporte después de comprar</strong><span>Mantenimiento y repuestos para tus equipos.</span></div></li>
-      </ul>
-      <div class="hero__cta"><a class="btn btn--navy" href="nosotros.html">Conoce al equipo</a><a class="btn btn--wa" href="${waLink('¡Hola DCH Tools! Quiero una asesoría.')}" target="_blank" rel="noopener">${ic('whatsapp')}Escríbenos</a></div>
+<section class="sec sec--white"><div class="wrap">
+  ${secHead({ title: 'Así compras en DCH', small: true })}
+  ${steps([['Elige tu equipo', 'Nuevo o de segunda mano, con precio y stock a la vista.'], ['Paga como prefieras', 'Tarjeta, Yape, Plin o transferencia bancaria.'], ['Recibe o recoge', 'Lima en 24 horas, provincias en 48 a 72 horas, o recoge en tienda.'], ['Te acompañamos', 'Garantía, mantenimiento y repuestos cuando los necesites.']], 'steps--compact')}
+  <div class="about-strip">
+    <div class="about-strip__copy">
+      <h2 class="h-md">Somos una familia del rubro</h2>
+      <p>DCH nació del esfuerzo y las enseñanzas de nuestra familia en el rubro ferretero y de maquinaria. Desde 2019 atendemos a maestros de obra, técnicos, contratistas y ferreterías. Te recomendamos la mejor opción según tu trabajo y tu presupuesto.</p>
+      <div class="hero__cta"><a class="btn btn--ghost btn--sm" href="nosotros.html">Conoce al equipo</a><a class="btn btn--wa btn--sm" href="${waLink('¡Hola DCH Tools! Quiero una asesoría.')}" target="_blank" rel="noopener">${ic('whatsapp')}Escríbenos</a></div>
     </div>
-  </div>
-  <div class="moments">
-    <article class="moment">${photo(root, 'despacho', 'Maqueta de foto del despacho')}<h3>Despacho a todo el Perú</h3><p>Preparamos tu pedido y lo enviamos el mismo día hábil.</p></article>
-    <article class="moment">${photo(root, 'taller', 'Maqueta de foto del taller')}<h3>Taller de mantenimiento</h3><p>Diagnóstico honesto antes de cualquier reparación.</p></article>
-    <article class="moment">${photo(root, 'tienda', 'Maqueta de foto de la tienda')}<h3>Tienda en San Juan de Miraflores</h3><p>Visítanos y llévate tu equipo hoy mismo.</p></article>
+    ${photo(root, 'mostrador', 'Maqueta de foto de asesoría en mostrador', 'photo--cut')}
   </div>
 </div></section>
 
-<section class="sec sec--white maint" data-scrolly aria-labelledby="maint-title"><div class="wrap maint__in">
+<section class="sec maint" data-scrolly aria-labelledby="maint-title"><div class="wrap maint__in">
   <div class="maint__side">
     <span class="tag">Después de comprar</span>
     <h2 class="h-lg" id="maint-title">Mantenimiento para que tu equipo no pare.</h2>
     <p class="lead">Preventivo y correctivo para alargar la vida útil de tus herramientas y reducir tiempos muertos en obra.</p>
     <div class="ticket" aria-hidden="true"><small>ORDEN DE SERVICIO</small><strong data-scrolly-label>Diagnóstico</strong>
       <div class="ticket__bar"><i class="on"></i><i></i><i></i><i></i></div><span class="mono" data-scrolly-count>Paso 1 de 4</span></div>
-    <a class="btn btn--red" href="mantenimiento.html">Cotizar mantenimiento ${ic('arrow-right')}</a>
+    <a class="btn btn--navy" href="mantenimiento.html">Cotizar mantenimiento ${ic('arrow-right')}</a>
     <p class="maint__note">¿Solo necesitas un equipo por unos días? <a href="alquiler.html">También alquilamos</a>.</p>
   </div>
   <ol class="maint__steps">
@@ -187,18 +176,13 @@ function home() {
   </ol>
 </div></section>
 
-<section class="sec"><div class="wrap">
-  ${secHead({ tag: 'Comprar es simple', title: 'Del clic a tu obra en cuatro pasos.' })}
-  ${steps([['Elige tu equipo', 'Nuevo o de segunda mano, con precio y stock a la vista.'], ['Paga como prefieras', 'Tarjeta, Yape, Plin o transferencia bancaria.'], ['Recibe o recoge', 'Lima en 24 horas, provincias en 48 a 72 horas, o recoge en tienda.'], ['Te acompañamos', 'Garantía, mantenimiento y repuestos cuando los necesites.']])}
-</div></section>
-
 <section class="sec sec--white"><div class="wrap">
-  ${secHead({ tag: 'Reseñas', title: 'Lo que dicen nuestros clientes' })}
+  ${secHead({ title: 'Lo que dicen nuestros clientes', small: true })}
   ${reviews()}
 </div></section>
 
 <section class="sec"><div class="wrap">
-  ${secHead({ tag: 'Preguntas frecuentes', title: 'Antes de comprar' })}
+  ${secHead({ title: 'Antes de comprar', small: true })}
   ${faq([
     ['¿Las herramientas y maquinaria tienen garantía?', 'Sí, contamos con garantía en productos seleccionados. Las condiciones se informan al momento de la compra.'],
     ['¿Qué formas de pago aceptan?', 'Tarjeta, Yape, Plin y transferencia bancaria. También coordinamos el pago junto con tu cotización por WhatsApp.'],
@@ -262,7 +246,7 @@ function collection({ handle, title, tag, blurb, list, facetCats = true, crumbLa
 
   const body = `
 <section class="phero"><div class="wrap phero__in">${crumbs(root, [['Tienda', 'colecciones/todos.html'], [crumbLabel || title]], true)}
-  ${tag ? `<span class="tag ${tag.cls || ''}">${tag.text}</span>` : ''}<h1 class="h-xl" style="font-size:clamp(2rem,4.6vw,3.75rem)">${title}</h1><p class="lead">${blurb}</p></div></section>
+  ${tag ? `<span class="tag ${tag.cls || ''}">${tag.text}</span>` : ''}<h1 class="h-xl" style="font-size:clamp(1.75rem,3.2vw,2.5rem)">${title}</h1><p class="lead">${blurb}</p></div></section>
 <div class="wrap shop" data-collection>
   ${filters}
   <div>
@@ -559,10 +543,10 @@ function cartPage() {
     <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--ghost" href="colecciones/todos.html">${ic('arrow-left')}Seguir comprando</a></div></div>
   <aside class="summary" data-cart-summary hidden><h2>Resumen del pedido</h2>
     <div class="totals"><div><span>Subtotal</span><b class="num" data-cart-total>S/ 0</b></div><div><span>Envío</span><span>Se calcula al pagar</span></div><div class="is-total"><span>Total</span><span class="num" data-cart-total>S/ 0</span></div></div>
-    <p class="mono" style="color:#b9c4e6">IGV incluido. Boleta o factura.</p>
+    <p class="mono" style="color:#b4bdcc">IGV incluido. Boleta o factura.</p>
     <a class="btn btn--red btn--block" href="checkout.html">Finalizar compra ${ic('arrow-right')}</a>
     <a class="btn btn--ghost-light btn--block" data-wa-cart href="#" target="_blank" rel="noopener">${ic('whatsapp')}Cotizar este pedido</a>
-    <p style="display:flex;gap:8px;align-items:center;color:#b9c4e6;font-size:.8125rem">${ic('lock')}Pago seguro. Elige tu medio de pago en el siguiente paso.</p></aside>
+    <p style="display:flex;gap:8px;align-items:center;color:#b4bdcc;font-size:.8125rem">${ic('lock')}Pago seguro. Elige tu medio de pago en el siguiente paso.</p></aside>
 </div>
 <section class="sec sec--white"><div class="wrap">${secHead({ tag: 'Complementa tu pedido', title: 'Otros equipos que llevan nuestros clientes' })}<div class="grid grid--rail4">${suggested.map((item) => card(item, root)).join('')}</div></div></section>`;
   return { title: 'Carrito', description: 'Revisa tu pedido.', body, current: '' };

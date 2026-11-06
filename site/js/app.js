@@ -394,7 +394,7 @@
 
   /* ---------- Carruseles y pestañas del home ---------- */
   $$('[data-rail]').forEach((rail) => {
-    const scroller = $('.rail', rail);
+    const scroller = $('.rail', rail) || $('.pgrid', rail);
     $$('[data-rail-dir]', rail).forEach((button) => {
       button.addEventListener('click', () => {
         scroller.scrollBy({ left: Number(button.dataset.railDir) * scroller.clientWidth * 0.85, behavior: 'smooth' });

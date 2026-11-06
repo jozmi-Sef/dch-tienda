@@ -10,18 +10,18 @@ const OUT = path.join(__dirname, '..', 'site', 'img', 'mock');
 fs.mkdirSync(OUT, { recursive: true });
 
 const C = {
-  bg: '#dce6f4',
-  bg2: '#cbd9ee',
-  floor: '#b9cbe6',
-  shelf: '#a9bddf',
-  box: '#c7d6ee',
-  box2: '#8fa8d6',
-  navy: '#001a72',
-  deep: '#000f45',
-  cyan: '#8ea9f2',
-  red: '#2f52d6', // acento de las maquetas: azul (el rojo queda solo para comprar)
+  bg: '#e4e8ef',
+  bg2: '#d3d9e4',
+  floor: '#c3cbd9',
+  shelf: '#b4bfd1',
+  box: '#d0d7e3',
+  box2: '#9aa9c3',
+  navy: '#243047',
+  deep: '#131a29',
+  cyan: '#a9b9d6',
+  red: '#4a6a9c', // acento de las maquetas: azul (el rojo queda solo para comprar)
   white: '#ffffff',
-  ink: '#0a1030',
+  ink: '#121826',
 };
 const SKIN = ['#f0c9a6', '#d6a078', '#b87a52', '#8a5a3c'];
 
@@ -50,7 +50,7 @@ function person(x, y, s, o = {}) {
     : '';
 
   return `<g transform="translate(${x} ${y}) scale(${s})">
-    <ellipse cx="0" cy="2" rx="46" ry="7" fill="#001a72" opacity=".12"/>
+    <ellipse cx="0" cy="2" rx="46" ry="7" fill="#243047" opacity=".12"/>
     <rect x="-23" y="-94" width="19" height="94" rx="7" fill="${pants}"/><rect x="4" y="-94" width="19" height="94" rx="7" fill="${pants}"/>
     <rect x="-27" y="-9" width="25" height="9" rx="4.5" fill="${C.ink}"/><rect x="2" y="-9" width="25" height="9" rx="4.5" fill="${C.ink}"/>
     <rect x="-46" y="-170" width="16" height="80" rx="8" fill="${shirt}"/><circle cx="-38" cy="-88" r="8.5" fill="${skin}"/>
@@ -112,7 +112,7 @@ const scenes = {
      ${person(120, 540, 1.05, { skin: SKIN[1], shirt: C.cyan, hat: C.red, vest: true })}
      ${person(255, 548, 1.18, { skin: SKIN[0], shirt: C.navy, hat: C.white, tool: 'clip' })}
      ${person(405, 556, 1.32, { skin: SKIN[2], shirt: C.navy, hat: C.red, vest: true, tool: 'drill', arm: 'up' })}
-     ${person(550, 548, 1.18, { skin: SKIN[3], shirt: '#35507f', hat: C.white })}
+     ${person(550, 548, 1.18, { skin: SKIN[3], shirt: '#3f5675', hat: C.white })}
      ${person(685, 540, 1.05, { skin: SKIN[0], shirt: C.cyan, hat: C.red, vest: true })}`,
     'Maqueta de foto del equipo DCH'
   ),
@@ -125,7 +125,7 @@ const scenes = {
      <rect x="120" y="420" width="120" height="8" fill="${C.cyan}" opacity=".7"/><rect x="120" y="440" width="80" height="8" fill="${C.cyan}" opacity=".4"/>
      <g transform="translate(400 340)"><rect width="56" height="22" rx="5" fill="${C.red}"/><rect x="52" y="6" width="20" height="9" fill="#2a2f45"/><rect x="10" y="20" width="16" height="30" rx="5" fill="#2a2f45"/></g>
      <g transform="translate(160 346)"><rect width="74" height="40" rx="4" fill="#fff" stroke="${C.navy}" stroke-width="3"/><path d="M12 14h50M12 24h34" stroke="${C.cyan}" stroke-width="4"/></g>
-     ${person(640, 520, 1.2, { skin: SKIN[2], shirt: '#35507f', hat: '#f2b705', vest: false, arm: 'up' })}`,
+     ${person(640, 520, 1.2, { skin: SKIN[2], shirt: '#3f5675', hat: '#f2b705', vest: false, arm: 'up' })}`,
     'Maqueta de foto de asesoría en mostrador'
   ),
 
@@ -151,7 +151,7 @@ const scenes = {
      <g transform="translate(470 120)"><rect width="260" height="120" rx="4" fill="${C.bg2}" stroke="${C.navy}" stroke-width="3" opacity=".9"/>
        <path d="M24 40h70M24 60h110M24 80h50" stroke="${C.navy}" stroke-width="5" opacity=".45"/><circle cx="196" cy="60" r="30" fill="none" stroke="${C.cyan}" stroke-width="8"/></g>
      ${floor(470)}
-     ${person(330, 540, 1.3, { skin: SKIN[3], shirt: '#35507f', hat: C.white, glasses: true, tool: 'grinder', arm: 'up' })}
+     ${person(330, 540, 1.3, { skin: SKIN[3], shirt: '#3f5675', hat: C.white, glasses: true, tool: 'grinder', arm: 'up' })}
      <rect x="440" y="400" width="300" height="130" fill="${C.navy}"/><rect x="430" y="388" width="320" height="14" fill="${C.deep}"/>
      <rect x="560" y="352" width="60" height="36" rx="3" fill="${C.shelf}"/><rect x="556" y="340" width="68" height="12" rx="3" fill="${C.ink}"/>
      <rect x="470" y="420" width="90" height="8" fill="${C.cyan}" opacity=".6"/>`,
@@ -161,7 +161,7 @@ const scenes = {
   /* Fachada de la tienda. */
   tienda: frame(
     `${floor(480)}
-     <rect x="110" y="120" width="580" height="360" fill="#eef3fb" stroke="${C.navy}" stroke-width="4"/>
+     <rect x="110" y="120" width="580" height="360" fill="#f1f3f7" stroke="${C.navy}" stroke-width="4"/>
      <rect x="110" y="120" width="580" height="72" fill="${C.navy}"/><path d="M690 120 h0 v72 h-70 l30 -72z" fill="${C.red}"/>
      <text x="150" y="168" font-family="Archivo, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="3" fill="#fff">DCH TOOLS</text>
      <g transform="translate(110 192)">${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => `<path d="M${i * 48.3} 0 h48.3 v34 q-24 14 -48.3 0z" fill="${i % 2 ? '#fff' : C.red}"/>`).join('')}</g>
