@@ -4064,6 +4064,24 @@ p {
   }
 }
 
+/* Nota de prototipo (reseñas). Va junto a los avisos de maqueta: se apaga quitando la clase mock-notes del <body>. */
+.proto-note {
+  display: none;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 20px;
+  padding: 9px 14px;
+  border-inline-start: 4px solid var(--blue);
+  background: var(--tint);
+  color: var(--navy);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.mock-notes .proto-note {
+  display: block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
