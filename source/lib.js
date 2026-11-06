@@ -215,7 +215,6 @@ function header(root, current = '') {
         ${link('nosotros.html', 'Nosotros', 'nosotros')}
         ${link('contacto.html', 'Contacto', 'contacto')}
       </ul>
-      <div class="navbar__aside"><a href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener">${ic('whatsapp')}Cotizar por WhatsApp</a></div>
     </div>${mega(root)}</nav>
   </header>`;
 }
@@ -275,7 +274,7 @@ function footer(root) {
       <div class="pay-chips" aria-label="Medios de pago"><span>VISA</span><span>MASTERCARD</span><span>YAPE</span><span>PLIN</span><span>TRANSFERENCIA</span></div>
     </div></div>
   </footer>
-  <a class="wa-float" href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ic('whatsapp')}<span>Escríbenos</span></a>`;
+  <a class="wa-float" href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ic('whatsapp')}<span class="wa-float__long">Cotiza por WhatsApp</span><span class="wa-float__short">Cotiza</span></a>`;
 }
 
 /* ---------- Plantilla de página ---------- */
