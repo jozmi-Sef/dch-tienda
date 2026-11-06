@@ -637,6 +637,8 @@ p {
   font-size: 0.8125rem;
   line-height: 1.15;
   text-align: left;
+  min-width: 44px;
+  justify-content: center;
 }
 
 .action:hover {
@@ -1031,6 +1033,8 @@ p {
   font-size: 0.8125rem;
   font-weight: 600;
   text-decoration: underline;
+  padding: 12px 6px;
+  margin: -12px -6px;
 }
 
 .qty {
@@ -1366,7 +1370,7 @@ p {
 
 .choice__card {
   position: relative;
-  display: grid;
+  display: flex;
   align-content: start;
   justify-items: start;
   gap: 14px;
@@ -1377,16 +1381,18 @@ p {
   background: #fff;
   color: var(--ink);
   box-shadow: var(--shadow);
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .choice__card--new {
-  border-top: 5px solid var(--line-strong);
+  border-top: 5px solid var(--navy);
 }
 
 .choice__card--used {
-  border-color: var(--navy);
+  border-color: var(--line);
   border-top: 5px solid var(--navy);
-  background: #eef2fc;
+  background: #fff;
 }
 
 .choice__stat {
@@ -3825,6 +3831,115 @@ p {
 
   .toolbar__sort {
     width: 100%;
+  }
+}
+
+/* ---------- Ajustes por tamaño de pantalla ---------- */
+.choice__card .btn {
+  margin-block-start: auto;
+}
+
+.promises--2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 40px;
+}
+
+/* Laptops pequeñas y tablets horizontales: el menú principal cabe sin desbordar */
+@media (max-width: 1180px) {
+  .nav__link {
+    gap: 6px;
+    padding: 0 10px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .promises--2col {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card__foot {
+    gap: 6px;
+  }
+
+  .card__wa {
+    width: 44px;
+  }
+}
+
+/* Celulares muy chicos (320 a 400 px): botones de la tarjeta compactos */
+@media (max-width: 400px) {
+  .card__foot {
+    grid-template-columns: minmax(0, 1fr) 40px;
+  }
+
+  .card__wa {
+    width: 40px;
+  }
+
+  .card__foot .btn {
+    padding: 0 8px;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Formulario apilado: el campo conserva su altura (flex: 1 la colapsaba a 20 px) */
+@media (max-width: 720px) {
+  .news input {
+    flex: none;
+    width: 100%;
+  }
+
+  .news .btn {
+    width: 100%;
+  }
+}
+
+/* iPhone SE y similares (hasta 360 px): el header cabe sin desbordar */
+@media (max-width: 360px) {
+  .logo-plate {
+    padding-inline-end: 28px;
+  }
+
+  .logo-plate img {
+    height: 40px;
+  }
+
+  .action {
+    min-width: 40px;
+    padding: 0 6px;
+  }
+
+  .action--cart {
+    padding: 0 8px;
+  }
+
+  .masthead {
+    gap: 0 8px;
+  }
+}
+
+/* Líneas del carrito en pantallas angostas: los controles pasan a otra línea si no caben */
+.line__ctrl {
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+@media (max-width: 720px) {
+  .cart__list {
+    padding-inline: 14px;
+  }
+}
+
+/* Celulares muy chicos: el botón flotante de WhatsApp queda solo con el icono */
+@media (max-width: 360px) {
+  .wa-float__short {
+    display: none;
+  }
+
+  .wa-float {
+    padding: 13px;
   }
 }
 
