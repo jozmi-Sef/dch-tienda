@@ -381,6 +381,7 @@
   document.addEventListener('dch:fav', () => {
     renderFavs();
     if ($('[data-collection]')) applyFilters();
+    renderFavPage();
   });
 
   /* ---------- Cantidad (ficha de producto) ---------- */
@@ -734,10 +735,51 @@
     );
   }
 
+  /* ---------- Página de favoritos ---------- */
+  const favPage = $('[data-favpage]');
+
+  /** Muestra solo los productos guardados, en el orden en que se guardaron. */
+  function renderFavPage() {
+    if (!favPage) return;
+    const list = favs.get();
+    const grid = $('[data-fav-grid]', favPage);
+    const cards = $$('.card', grid);
+    const byIdMap = new Map(cards.map((card) => [card.dataset.id, card]));
+
+    list.forEach((id) => {
+      const card = byIdMap.get(id);
+      if (card) grid.append(card);
+    });
+    cards.forEach((card) => {
+      card.hidden = !list.includes(card.dataset.id);
+    });
+
+    const total = list.filter((id) => byIdMap.has(id)).length;
+    $('[data-fav-empty]', favPage).hidden = total > 0;
+    $('[data-fav-bar]', favPage).hidden = total === 0;
+    $('[data-fav-total]', favPage).textContent = `${total} ${total === 1 ? 'producto guardado' : 'productos guardados'}`;
+  }
+
+  if (favPage) {
+    $('[data-fav-addall]', favPage)?.addEventListener('click', () => {
+      const ids = favs.get().filter((id) => byId.has(id));
+      ids.forEach((id) => cart.add(id, 1));
+      openDrawer('cart');
+      toast(ids.length === 1 ? 'Agregamos 1 favorito al carrito' : `Agregamos ${ids.length} favoritos al carrito`);
+    });
+
+    $('[data-fav-clear]', favPage)?.addEventListener('click', () => {
+      store.write('dch:fav', []);
+      document.dispatchEvent(new CustomEvent('dch:fav'));
+      toast('Lista de favoritos vacía');
+    });
+  }
+
   /* ---------- Inicio ---------- */
   const year = $('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
 
   renderCart();
   renderFavs();
+  renderFavPage();
 })();

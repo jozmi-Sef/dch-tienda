@@ -33,6 +33,7 @@ const rootPages = {
   'contacto.html': P.contact(),
   'cuenta.html': P.account(),
   'ayuda.html': P.help(),
+  'favoritos.html': P.favorites(),
   'carrito.html': P.cartPage(),
   'checkout.html': P.checkout(),
   'gracias.html': P.thanks(),

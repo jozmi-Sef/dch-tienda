@@ -533,6 +533,24 @@ function help() {
   return { title: 'Preguntas frecuentes', description: 'Compras, pagos, envíos, garantía, alquiler y mantenimiento.', body, current: '' };
 }
 
+/* ---------- Favoritos ---------- */
+function favorites() {
+  const root = '';
+  // Se generan todas las tarjetas ocultas; el navegador muestra solo las guardadas.
+  const cards = PRODUCTS.map((product) => card(product, root).replace('<article class="card"', '<article class="card" hidden')).join('');
+  const body = `${phero({ root, crumbItems: [['Mis favoritos']], title: 'Mis favoritos', text: 'Los equipos que guardaste con el corazón. Se guardan en este navegador.' })}
+<section class="sec" data-favpage><div class="wrap">
+  <div class="toolbar" data-fav-bar hidden>
+    <p class="toolbar__count"><strong data-fav-total>0 productos guardados</strong></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn btn--navy btn--sm" data-fav-addall>${ic('cart')}Añadir todos al carrito</button><button type="button" class="btn btn--ghost btn--sm" data-fav-clear>Vaciar lista</button></div>
+  </div>
+  <div class="pgrid" data-fav-grid>${cards}</div>
+  <div class="noresult" data-fav-empty>${ic('heart')}<strong>Aún no tienes favoritos</strong><span>Toca el corazón en cualquier producto para guardarlo aquí.</span><a class="btn btn--navy" href="colecciones/todos.html">Ver el catálogo ${ic('arrow-right')}</a></div>
+  <noscript><p>Activa JavaScript para ver tus favoritos.</p></noscript>
+</div></section>`;
+  return { title: 'Mis favoritos', description: 'Tus productos guardados.', body, current: '' };
+}
+
 /* ---------- Carrito ---------- */
 function cartPage() {
   const root = '';
@@ -618,4 +636,4 @@ function thanks() {
   return { title: 'Pedido confirmado', description: 'Gracias por tu compra.', body, current: '' };
 }
 
-module.exports = { home, collectionsAll, product, usedLanding, brandsPage, maintenance, rental, about, contact, account, help, cartPage, checkout, thanks };
+module.exports = { home, collectionsAll, product, usedLanding, brandsPage, maintenance, rental, about, contact, account, help, cartPage, checkout, thanks, favorites };

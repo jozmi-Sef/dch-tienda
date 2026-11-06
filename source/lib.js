@@ -198,7 +198,7 @@ function header(root, current = '') {
       <div class="actions">
         <button type="button" class="action menu-toggle" data-open="menu" aria-label="Abrir menú">${ic('menu')}</button>
         <a class="action action--text" href="${root}cuenta.html">${ic('user')}<span><small>Hola, inicia sesión</small><strong>Mi cuenta</strong></span></a>
-        <a class="action" href="${root}colecciones/todos.html?fav=1" aria-label="Favoritos">${ic('heart')}<span class="dot-count" data-fav-count hidden>0</span></a>
+        <a class="action" href="${root}favoritos.html" aria-label="Mis favoritos">${ic('heart')}<span class="dot-count" data-fav-count hidden>0</span></a>
         <button type="button" class="action action--cart" data-open="cart" aria-label="Abrir carrito">${ic('cart')}<span class="dot-count" data-cart-count hidden>0</span><span><small style="color:#c9d6ff">Carrito</small><strong class="num" data-cart-total>S/ 0</strong></span></button>
       </div>
     </div>
@@ -235,6 +235,7 @@ function mobileNav(root) {
       <a href="${root}alquiler.html">Alquiler</a>
       <a href="${root}nosotros.html">Nosotros</a>
       <a href="${root}contacto.html">Contacto</a>
+      <a href="${root}favoritos.html">Mis favoritos</a>
       <a href="${root}cuenta.html">Mi cuenta</a>
     </div>
   </aside>`;
