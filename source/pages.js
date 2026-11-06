@@ -83,7 +83,7 @@ function home() {
     })
     .join('');
 
-  const moreCats = `<a class="cat cat--more" href="colecciones/todos.html"><strong>Todo el catálogo</strong><small style="color:#b4bdcc">${NEW.length} modelos nuevos</small>${ic('arrow-right')}</a><a class="cat cat--more cat--used" href="segunda-mano.html"><strong>Segunda mano</strong><small>${USED.length} equipos revisados</small>${ic('arrow-right')}</a>`;
+  const moreCats = `<a class="cat cat--more" href="colecciones/todos.html"><strong>Todo el catálogo</strong><small style="color:#b9c4e6">${NEW.length} modelos nuevos</small>${ic('arrow-right')}</a><a class="cat cat--more cat--used" href="segunda-mano.html"><strong>Segunda mano</strong><small>${USED.length} equipos revisados</small>${ic('arrow-right')}</a>`;
 
   const rail = (list, group) => list.map((product) => card(product, root, { group })).join('');
 
@@ -543,10 +543,10 @@ function cartPage() {
     <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--ghost" href="colecciones/todos.html">${ic('arrow-left')}Seguir comprando</a></div></div>
   <aside class="summary" data-cart-summary hidden><h2>Resumen del pedido</h2>
     <div class="totals"><div><span>Subtotal</span><b class="num" data-cart-total>S/ 0</b></div><div><span>Envío</span><span>Se calcula al pagar</span></div><div class="is-total"><span>Total</span><span class="num" data-cart-total>S/ 0</span></div></div>
-    <p class="mono" style="color:#b4bdcc">IGV incluido. Boleta o factura.</p>
+    <p class="mono" style="color:#b9c4e6">IGV incluido. Boleta o factura.</p>
     <a class="btn btn--red btn--block" href="checkout.html">Finalizar compra ${ic('arrow-right')}</a>
     <a class="btn btn--ghost-light btn--block" data-wa-cart href="#" target="_blank" rel="noopener">${ic('whatsapp')}Cotizar este pedido</a>
-    <p style="display:flex;gap:8px;align-items:center;color:#b4bdcc;font-size:.8125rem">${ic('lock')}Pago seguro. Elige tu medio de pago en el siguiente paso.</p></aside>
+    <p style="display:flex;gap:8px;align-items:center;color:#b9c4e6;font-size:.8125rem">${ic('lock')}Pago seguro. Elige tu medio de pago en el siguiente paso.</p></aside>
 </div>
 <section class="sec sec--white"><div class="wrap">${secHead({ tag: 'Complementa tu pedido', title: 'Otros equipos que llevan nuestros clientes' })}<div class="grid grid--rail4">${suggested.map((item) => card(item, root)).join('')}</div></div></section>`;
   return { title: 'Carrito', description: 'Revisa tu pedido.', body, current: '' };

@@ -102,7 +102,7 @@ function gearSvg() {
     const radii = [inner, inner, outer, outer, inner];
     angles.forEach((angle, index) => points.push(`${(320 + Math.cos(angle) * radii[index]).toFixed(1)},${(320 + Math.sin(angle) * radii[index]).toFixed(1)}`));
   }
-  return `<svg class="hero__gear" viewBox="0 0 640 640" aria-hidden="true"><polygon points="${points.join(' ')}" fill="currentColor"/><circle cx="320" cy="320" r="130" fill="#131a29"/></svg>`;
+  return `<svg class="hero__gear" viewBox="0 0 640 640" aria-hidden="true"><polygon points="${points.join(' ')}" fill="currentColor"/><circle cx="320" cy="320" r="130" fill="#00092e"/></svg>`;
 }
 
 /* ---------- Productos listos para renderizar ---------- */
@@ -199,7 +199,7 @@ function header(root, current = '') {
         <button type="button" class="action menu-toggle" data-open="menu" aria-label="Abrir menú">${ic('menu')}</button>
         <a class="action action--text" href="${root}cuenta.html">${ic('user')}<span><small>Hola, inicia sesión</small><strong>Mi cuenta</strong></span></a>
         <a class="action" href="${root}colecciones/todos.html?fav=1" aria-label="Favoritos">${ic('heart')}<span class="dot-count" data-fav-count hidden>0</span></a>
-        <button type="button" class="action action--cart" data-open="cart" aria-label="Abrir carrito">${ic('cart')}<span class="dot-count" data-cart-count hidden>0</span><span><small style="color:#cbd3e1">Carrito</small><strong class="num" data-cart-total>S/ 0</strong></span></button>
+        <button type="button" class="action action--cart" data-open="cart" aria-label="Abrir carrito">${ic('cart')}<span class="dot-count" data-cart-count hidden>0</span><span><small style="color:#c9d6ff">Carrito</small><strong class="num" data-cart-total>S/ 0</strong></span></button>
       </div>
     </div>
     <nav class="navbar" aria-label="Principal"><div class="wrap navbar__in">
@@ -296,7 +296,7 @@ function layout({ root = '', title, description = '', body, current = '', bare =
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(full)}</title>
 <meta name="description" content="${esc(description)}">
-<meta name="theme-color" content="#131a29">
+<meta name="theme-color" content="#000c3a">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_PE">
 <meta property="og:site_name" content="${SITE.name}">
