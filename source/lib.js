@@ -198,7 +198,7 @@ function header(root, current = '') {
         <button type="button" class="action menu-toggle" data-open="menu" aria-label="Abrir menú">${ic('menu')}</button>
         <a class="action action--text" href="${root}cuenta.html">${ic('user')}<span><small>Hola, inicia sesión</small><strong>Mi cuenta</strong></span></a>
         <a class="action" href="${root}colecciones/todos.html?fav=1" aria-label="Favoritos">${ic('heart')}<span class="dot-count" data-fav-count hidden>0</span></a>
-        <button type="button" class="action action--cart" data-open="cart" aria-label="Abrir carrito">${ic('cart')}<span class="dot-count" data-cart-count hidden>0</span><span><small style="color:#ffd5d8">Carrito</small><strong class="num" data-cart-total>S/ 0</strong></span></button>
+        <button type="button" class="action action--cart" data-open="cart" aria-label="Abrir carrito">${ic('cart')}<span class="dot-count" data-cart-count hidden>0</span><span><small style="color:#c9d6ff">Carrito</small><strong class="num" data-cart-total>S/ 0</strong></span></button>
       </div>
     </div>
     <nav class="navbar" aria-label="Principal"><div class="wrap navbar__in">

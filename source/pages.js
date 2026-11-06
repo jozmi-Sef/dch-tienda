@@ -116,14 +116,14 @@ function home() {
   ${secHead({ tag: 'Elige cómo comprar', title: 'Nuevo o de segunda mano, tú decides.' })}
   <div class="choice">
     <article class="choice__card choice__card--new">
-      <div class="choice__imgs"><img src="${byHandle('maquina-de-soldar-inverter-250-amp').img}" alt=""><img src="${byHandle('demoledor-electrico-1300w-20j').img}" alt=""><img src="${byHandle('generador-de-luz-3000-w').img}" alt=""></div>
+      <div class="choice__stat"><b class="num">${NEW.length}</b><span>modelos nuevos<br>con stock en Lima</span></div>
       <span class="tag">Nuevas</span><h3 class="h-lg">Máquinas nuevas</h3>
       <p class="lead">Powful, Ingco, Dong Cheng, Bomtex y más. Productos originales con respaldo de fabricante en equipos seleccionados.</p>
       <ul><li>${ic('check')}Stock inmediato en Lima</li><li>${ic('check')}Boleta o factura</li><li>${ic('check')}Mantenimiento y repuestos</li></ul>
       <a class="btn btn--red" href="colecciones/nuevos.html" style="justify-self:start">Ver máquinas nuevas ${ic('arrow-right')}</a>
     </article>
     <article class="choice__card choice__card--used">
-      <div class="choice__imgs"><img src="${USED[0].img}" alt=""><img src="${USED[1].img}" alt=""><img src="${USED[3].img}" alt=""></div>
+      <div class="choice__stat"><b class="num">${USED.length}</b><span>equipos revisados<br>disponibles hoy</span></div>
       <span class="tag tag--navy">Segunda mano</span><h3 class="h-lg">Equipos revisados, con horas de uso a la vista</h3>
       <p class="lead">Cada equipo se revisa antes de venderse. Ves su estado y sus horas de uso antes de pagar.</p>
       <ul><li>${ic('check')}Estado y horas de uso a la vista</li><li>${ic('check')}Revisión antes de la entrega</li><li>${ic('check')}Precio menor al de un equipo nuevo</li></ul>
