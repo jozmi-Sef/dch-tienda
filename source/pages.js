@@ -308,7 +308,6 @@ function product(item) {
   const used = item.condition === 'usado';
   const related = PRODUCTS.filter((other) => other.cat === item.cat && other.handle !== item.handle && other.condition === item.condition).slice(0, 4);
   const filler = PRODUCTS.filter((other) => other.cat !== item.cat && other.condition === 'nuevo').slice(0, 4 - related.length);
-  const quote = waLink(`Hola, deseo cotizar este producto: ${item.title}\n${item.sku}`);
   const saving = item.compareAt ? Math.round(((item.compareAt - item.price) / item.compareAt) * 100) : 0;
   const facts = item.specs.slice(0, 3);
 
@@ -339,7 +338,6 @@ function product(item) {
       <div class="buy-row"><div class="qty" role="group" aria-label="Cantidad"><button type="button" data-step="-1" aria-label="Quitar uno">−</button><input type="number" value="1" min="1" max="99" aria-label="Cantidad" data-qty-input><button type="button" data-step="1" aria-label="Agregar uno">+</button></div>
         <button type="button" class="btn btn--red" data-add="${item.id}" data-use-qty>${ic('cart')}Añadir al carrito</button></div>
       <div class="buy-row"><button type="button" class="btn btn--navy" data-add="${item.id}" data-use-qty data-buy-now>Comprar ahora</button>
-        <a class="btn btn--wa" href="${quote}" target="_blank" rel="noopener">${ic('whatsapp')}Cotizar por WhatsApp</a>
         <button type="button" class="btn btn--ghost" data-fav="${item.id}" aria-pressed="false" style="flex:0 0 auto;min-width:0">${ic('heart')}Guardar</button></div>
       <div class="panel delivery"><h3>${ic('truck')}Entrega</h3>
         <div class="delivery__row"><label class="vh" for="dep">Departamento</label><select id="dep" class="select" data-delivery><option value="lima">Lima</option><option value="provincias">Otro departamento</option></select></div>
