@@ -159,10 +159,13 @@ function card(product, root = '', options = {}) {
 }
 
 /* ---------- Estructura común ---------- */
-function topbar(root = '') {
-  return `<div class="topbar"><div class="wrap topbar__in">
-    <div class="topbar__group"><span class="topbar__item">${ic('truck')}Envíos a todo el Perú</span><span class="topbar__item">${ic('shield')}Garantía en todos los equipos</span><span class="topbar__item topbar__opt">${ic('pin')}Lima en 24 horas</span></div>
-    <div class="topbar__group topbar__group--aside"><a class="topbar__item" href="${root}ayuda.html#envios">${ic('box')}Seguimiento de pedido</a><a class="topbar__item" href="${root}ayuda.html">Ayuda</a><a class="topbar__item topbar__phone" href="https://wa.me/${SITE.wa}" target="_blank" rel="noopener">${ic('whatsapp')}${SITE.phone}</a></div>
+function topbar() {
+  return `<div class="topbar" aria-label="Avisos de la tienda"><div class="wrap topbar__slides">
+    <p class="topbar__slide">${ic('truck')}<span>Envíos a todo el Perú</span></p>
+    <p class="topbar__slide">${ic('shield')}<span>Garantía en todos los equipos</span></p>
+    <p class="topbar__slide">${ic('pin')}<span>Entrega en Lima en 24 horas</span></p>
+    <p class="topbar__slide">${ic('box')}<span>Equipos nuevos y de segunda mano revisados</span></p>
+    <p class="topbar__slide">${ic('whatsapp')}<span>Cotiza por WhatsApp y te respondemos en minutos</span></p>
   </div></div>`;
 }
 
@@ -183,7 +186,7 @@ function mega(root) {
 
 function header(root, current = '') {
   const link = (href, label, key, extra = '') => `<li><a class="nav__link" href="${root}${href}"${current === key ? ' aria-current="page"' : ''}>${label}${extra}</a></li>`;
-  return `${topbar(root)}
+  return `${topbar()}
   <header class="header">
     <div class="wrap masthead">
       <a class="logo-plate" href="${root}index.html" aria-label="${SITE.name}, inicio"><img src="${root}img/logo.png" alt="${SITE.short}: herramientas para construcción" width="104" height="59"></a>
