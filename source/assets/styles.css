@@ -418,7 +418,7 @@ p {
   color: var(--steel);
 }
 
-/* ---------- Barra superior: mensajes que rotan ---------- */
+/* ---------- Barra superior: 3 mensajes centrados ---------- */
 .topbar {
   background: var(--tint);
   border-bottom: 1px solid var(--line-strong);
@@ -428,26 +428,19 @@ p {
 }
 
 .topbar__slides {
-  position: relative;
-  height: 48px;
-  overflow: hidden;
-}
-
-.topbar__slide {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  opacity: 0;
-  animation: topbar-slide 20s infinite;
+  gap: 8px 44px;
+  min-height: 48px;
 }
 
-.topbar__slide:nth-child(2) { animation-delay: 4s; }
-.topbar__slide:nth-child(3) { animation-delay: 8s; }
-.topbar__slide:nth-child(4) { animation-delay: 12s; }
-.topbar__slide:nth-child(5) { animation-delay: 16s; }
+.topbar__slide {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
 
 .topbar__slide .i {
   flex: none;
@@ -461,15 +454,43 @@ p {
   animation: topbar-bob 2.4s ease-in-out infinite;
 }
 
-@keyframes topbar-slide {
-  0% { opacity: 0; transform: translateY(18px); }
-  4%, 18% { opacity: 1; transform: translateY(0); }
-  22%, 100% { opacity: 0; transform: translateY(-18px); }
-}
+.topbar__slide:nth-child(2) .i { animation-delay: 0.3s; }
+.topbar__slide:nth-child(3) .i { animation-delay: 0.6s; }
 
 @keyframes topbar-bob {
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-2px) rotate(-8deg); }
+}
+
+/* En pantallas angostas no caben los 3: rotan uno a uno */
+@media (max-width: 899px) {
+  .topbar {
+    font-size: 0.9375rem;
+  }
+
+  .topbar__slides {
+    position: relative;
+    display: block;
+    height: 44px;
+    overflow: hidden;
+  }
+
+  .topbar__slide {
+    position: absolute;
+    inset: 0;
+    justify-content: center;
+    opacity: 0;
+    animation: topbar-slide 12s infinite;
+  }
+
+  .topbar__slide:nth-child(2) { animation-delay: 4s; }
+  .topbar__slide:nth-child(3) { animation-delay: 8s; }
+}
+
+@keyframes topbar-slide {
+  0% { opacity: 0; transform: translateY(18px); }
+  6%, 30% { opacity: 1; transform: translateY(0); }
+  36%, 100% { opacity: 0; transform: translateY(-18px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -490,16 +511,6 @@ p {
 
   .topbar__slide .i {
     animation: none;
-  }
-}
-
-@media (max-width: 720px) {
-  .topbar {
-    font-size: 0.9375rem;
-  }
-
-  .topbar__slides {
-    height: 44px;
   }
 }
 

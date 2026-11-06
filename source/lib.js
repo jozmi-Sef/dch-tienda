@@ -164,8 +164,6 @@ function topbar() {
     <p class="topbar__slide">${ic('truck')}<span>Envíos a todo el Perú</span></p>
     <p class="topbar__slide">${ic('shield')}<span>Garantía en todos los equipos</span></p>
     <p class="topbar__slide">${ic('pin')}<span>Entrega en Lima en 24 horas</span></p>
-    <p class="topbar__slide">${ic('box')}<span>Equipos nuevos y de segunda mano revisados</span></p>
-    <p class="topbar__slide">${ic('whatsapp')}<span>Cotiza por WhatsApp y te respondemos en minutos</span></p>
   </div></div>`;
 }
 
