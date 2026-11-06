@@ -100,7 +100,7 @@ function home() {
     <div class="hero__visual">
       <span class="tag tag--cyan hero__stat">${NEW.length} modelos en catálogo</span>
       ${photo(root, 'equipo', 'Maqueta de foto del equipo DCH', 'photo--cut')}
-      <div class="hero-pick"><a class="hero-pick__media" href="${featured.href}" aria-hidden="true" tabindex="-1"><img src="${featured.img}" alt="" width="64" height="64"></a><div class="hero-pick__body"><small>Destacado · ${featured.sku}</small><a href="${featured.href}"><strong>${esc(featured.title)}</strong></a><b class="num">${money(featured.price)}</b></div><button type="button" class="btn btn--red btn--sm" data-add="${featured.id}">Añadir</button></div>
+      <div class="hero-pick"><a class="hero-pick__media" href="${featured.href}" aria-hidden="true" tabindex="-1"><img src="${featured.img}" alt="" width="64" height="64"></a><div class="hero-pick__body"><small>Destacado · ${featured.sku}</small><a href="${featured.href}"><strong>${esc(featured.title)}</strong></a><b class="num">${money(featured.price)}</b></div><button type="button" class="btn btn--navy btn--sm" data-add="${featured.id}">Añadir</button></div>
     </div>
   </div>
 </section>

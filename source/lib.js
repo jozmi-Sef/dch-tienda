@@ -151,7 +151,7 @@ function card(product, root = '', options = {}) {
       <p class="price num">${money(product.price)}${product.compareAt ? ` <s>${money(product.compareAt)}</s>` : ''}</p>
       ${stockHtml(product)}
       <div class="card__foot">
-        <button type="button" class="btn btn--red btn--sm" data-add="${product.id}">Añadir</button>
+        <button type="button" class="btn btn--navy btn--sm" data-add="${product.id}">Añadir</button>
         <a class="card__wa" href="${quote}" target="_blank" rel="noopener" aria-label="Cotizar ${esc(product.title)} por WhatsApp">${ic('whatsapp')}</a>
       </div>
     </div>
