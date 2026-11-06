@@ -7,23 +7,23 @@
 
 :root {
   /* Color */
-  --navy-900: #131a29;
-  --navy-800: #1a2335;
-  --navy: #243047;
-  --blue: #3d5a85;
-  --cyan: #a9b9d6;
+  --navy-900: #000c3a;
+  --navy-800: #001254;
+  --navy: #001a72;
+  --blue: #00249c;
+  --cyan: #00b5ef;
   --red: #e30613;
   --red-dark: #b8000d;
-  --ink: #121826;
-  --steel: #5a6578;
-  --line: #dde1e8;
-  --paper: #f3f4f6;
-  --paper-2: #e9ecf1;
+  --ink: #0a1030;
+  --steel: #55607a;
+  --line: #d9e0ea;
+  --paper: #f2f4f7;
+  --paper-2: #e8ecf2;
   --white: #ffffff;
   --ok: #0b8f5c;
-  --tint: #e8ecf3; /* azul muy claro para rótulos y fondos suaves */
-  --sky: #b7c4dc; /* azul claro para textos sobre fondo oscuro */
-  --line-strong: #c5ccd8;
+  --tint: #e3e9fa; /* azul muy claro para rótulos y fondos suaves */
+  --sky: #a9bfff; /* azul claro para textos sobre fondo oscuro */
+  --line-strong: #c3cde0;
 
   /* Tipografía */
   --f-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
@@ -35,7 +35,7 @@
   --gutter: clamp(16px, 4vw, 32px);
   --cut: 16px;
   --radius: 4px;
-  --shadow: 0 18px 40px -22px rgb(19 26 41 / 45%);
+  --shadow: 0 18px 40px -22px rgb(0 9 46 / 45%);
 }
 
 /* ---------- Base ---------- */
@@ -202,7 +202,7 @@ p {
 
 .sec--dark .lead,
 .on-dark .lead {
-  color: #b4bdcc;
+  color: #b9c4e6;
 }
 
 .mono {
@@ -421,7 +421,7 @@ p {
 /* ---------- Barra superior ---------- */
 .topbar {
   background: var(--navy-800);
-  color: #c8cfdc;
+  color: #c9d3f1;
   font-size: 0.8125rem;
 }
 
@@ -543,7 +543,7 @@ p {
 }
 
 .search__form input::placeholder {
-  color: #a3adc0;
+  color: #9fb0dd;
 }
 
 .search__form:focus-within input::placeholder {
@@ -653,7 +653,7 @@ p {
 
 .action small {
   display: block;
-  color: #a3adc0;
+  color: #9fb0dd;
   font-size: 0.6875rem;
 }
 
@@ -689,7 +689,7 @@ p {
 }
 
 .action--cart:hover {
-  background: #4b6ea3;
+  background: #0a35c4;
 }
 
 .action--cart .dot-count {
@@ -732,7 +732,7 @@ p {
   min-height: 48px;
   padding: 0 14px;
   white-space: nowrap;
-  color: #d6dbe6;
+  color: #dbe3fb;
   font-family: var(--f-display);
   font-size: 0.875rem;
   font-weight: 700;
@@ -809,7 +809,7 @@ p {
   border-block-start: 4px solid var(--blue);
   background: #fff;
   color: var(--ink);
-  box-shadow: 0 30px 50px -30px rgb(19 26 41 / 60%);
+  box-shadow: 0 30px 50px -30px rgb(0 9 46 / 60%);
 }
 
 .mega__in {
@@ -880,7 +880,7 @@ p {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(180deg, rgb(19 26 41 / 10%) 0%, rgb(19 26 41 / 92%) 85%);
+  background: linear-gradient(180deg, rgb(0 12 58 / 10%) 0%, rgb(0 12 58 / 92%) 85%);
 }
 
 .mega__feat > * {
@@ -893,7 +893,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgb(19 26 41 / 60%);
+  background: rgb(0 9 46 / 60%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -1139,14 +1139,14 @@ p {
 .mnav__sub {
   display: grid;
   padding-inline-start: 14px;
-  color: #b4bdcc;
+  color: #b9c4e6;
 }
 
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(60% 80% at 85% 20%, rgb(95 120 165 / 30%), transparent 70%), linear-gradient(160deg, var(--navy-900) 0%, var(--navy) 140%);
+  background: radial-gradient(60% 80% at 85% 20%, rgb(0 36 156 / 55%), transparent 70%), linear-gradient(160deg, var(--navy-900) 0%, var(--navy) 140%);
   color: #fff;
 }
 
@@ -1182,7 +1182,7 @@ p {
 }
 
 .hero__copy .lead {
-  color: #c2cad8;
+  color: #c5d0f0;
 }
 
 .hero__cta {
@@ -1199,7 +1199,7 @@ p {
 }
 
 .quick span {
-  color: #a3adc0;
+  color: #9fb0dd;
   font-size: 0.8125rem;
 }
 
@@ -1241,7 +1241,7 @@ p {
   left: 12px;
   bottom: 12px;
   padding: 5px 9px;
-  background: rgb(19 26 41 / 82%);
+  background: rgb(0 9 46 / 82%);
   color: #fff;
   font-family: var(--f-mono);
   font-size: 0.6875rem;
@@ -1358,7 +1358,7 @@ p {
 }
 
 .trust__item span {
-  color: #a3adc0;
+  color: #9fb0dd;
   font-size: 0.8125rem;
 }
 
@@ -1521,7 +1521,7 @@ p {
 }
 
 .cat--used:hover {
-  background: #d8dde8;
+  background: #d5def5;
 }
 
 /* Aviso "maqueta" sobre las fotos. Se apaga quitando la clase mock-notes del <body> (lib.js). */
@@ -1538,7 +1538,7 @@ p {
   inset: auto 0 0 0;
   z-index: 2;
   padding: 5px 8px;
-  background: rgb(19 26 41 / 82%);
+  background: rgb(0 12 58 / 82%);
   color: #fff;
   font-family: var(--f-mono);
   font-size: 0.625rem;
@@ -1615,7 +1615,7 @@ p {
   border-radius: 50%;
   background: #fff;
   color: var(--steel);
-  box-shadow: 0 4px 12px -4px rgb(19 26 41 / 40%);
+  box-shadow: 0 4px 12px -4px rgb(0 9 46 / 40%);
 }
 
 .fav:hover {
@@ -1932,7 +1932,7 @@ p {
 }
 
 .service--main .lead {
-  color: #c2cad8;
+  color: #c5d0f0;
 }
 
 .service__list {
@@ -2168,7 +2168,7 @@ p {
 }
 
 .sec--dark .step p {
-  color: #b4bdcc;
+  color: #b9c4e6;
 }
 
 .sec--dark .step::before {
@@ -2312,7 +2312,7 @@ p {
 /* ---------- Pie ---------- */
 .footer {
   background: var(--navy-900);
-  color: #b4bdcc;
+  color: #b9c4e6;
 }
 
 .footer__top {
@@ -2481,7 +2481,7 @@ p {
 }
 
 .phero .lead {
-  color: #c2cad8;
+  color: #c5d0f0;
 }
 
 .crumbs {
@@ -2506,7 +2506,7 @@ p {
 
 .crumbs--dark {
   padding-block: 0;
-  color: #a3adc0;
+  color: #9fb0dd;
 }
 
 .crumbs--dark a:hover {
@@ -2913,7 +2913,7 @@ p {
   padding: 10px max(16px, env(safe-area-inset-right, 0px)) max(10px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   border-block-start: 1px solid var(--line);
   background: #fff;
-  box-shadow: 0 -10px 30px -14px rgb(19 26 41 / 40%);
+  box-shadow: 0 -10px 30px -14px rgb(0 9 46 / 40%);
 }
 
 .sticky-buy b {
@@ -2957,7 +2957,7 @@ p {
 }
 
 .summary .totals div {
-  color: #b4bdcc;
+  color: #b9c4e6;
 }
 
 .summary .totals .is-total {
@@ -3110,7 +3110,7 @@ p {
 }
 
 .opt:has(input:checked) {
-  background: #eef0f4;
+  background: #eef2fc;
   box-shadow: inset 0 0 0 2px var(--navy);
 }
 
