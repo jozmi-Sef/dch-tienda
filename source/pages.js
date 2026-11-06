@@ -7,6 +7,21 @@ const { SITE, CATEGORIES, CATEGORY_GROUPS, PRODUCTS, NEW, USED, BRANDS, esc, mon
 const byHandle = (handle) => PRODUCTS.find((product) => product.handle === handle);
 const cap = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
+/** Altura del logo en la cinta: los logos casi cuadrados (con símbolo arriba) necesitan más alto. */
+const logoHeight = (logo) => {
+  const size = L.brandLogoSize(logo);
+  return size && size.w / size.h < 1.5 ? 58 : 40;
+};
+
+/** Marca para la cinta del Home: logo si existe, nombre en texto si no. */
+const brandMark = (brand, root = '') => {
+  const logo = L.brandLogo(brand);
+  const href = `${root}colecciones/todos.html?marca=${encodeURIComponent(brand)}`;
+  return logo
+    ? `<a class="brand-logo" href="${href}" aria-label="${esc(brand)}"><img src="${root}${logo}" alt="${esc(brand)}" height="${logoHeight(logo)}" loading="lazy"></a>`
+    : `<a href="${href}">${esc(brand)}</a>`;
+};
+
 /* ---------- Componentes ---------- */
 const photo = (root, name, note, extra = '') =>
   `<div class="photo ${extra}"><img src="${root}img/mock/${name}.svg" alt="${esc(note)}" loading="lazy"><span class="photo__note">MAQUETA · reemplazar por foto real</span></div>`;
@@ -129,7 +144,7 @@ function home() {
 </div></section>
 
 <section class="brands" aria-label="Marcas que trabajamos"><div class="brands__track">${[0, 1]
-    .map(() => BRANDS.map((brand) => `<a href="colecciones/todos.html?marca=${encodeURIComponent(brand)}">${esc(brand)}</a>`).join(''))
+    .map((copy) => `<div class="brands__set"${copy ? ' inert aria-hidden="true"' : ''}>${BRANDS.map((brand) => brandMark(brand)).join('')}</div>`)
     .join('')}</div></section>
 
 <section class="sec"><div class="wrap">
@@ -382,7 +397,8 @@ function brandsPage() {
   const body = `${phero({ root, crumbItems: [['Marcas']], title: 'Marcas que trabajamos', text: 'Herramientas y maquinaria de marcas reconocidas. Elige una para ver todos sus equipos.' })}
 <section class="sec"><div class="wrap"><div class="brand-cards">${BRANDS.map((brand) => {
     const count = PRODUCTS.filter((item) => item.brand === brand && item.condition === 'nuevo').length;
-    return `<a class="brand-card" href="colecciones/todos.html?marca=${encodeURIComponent(brand)}"><strong>${esc(brand)}</strong><small>${count} ${count === 1 ? 'modelo' : 'modelos'}</small></a>`;
+    const logo = L.brandLogo(brand);
+    return `<a class="brand-card${logo ? ' brand-card--logo' : ''}" href="colecciones/todos.html?marca=${encodeURIComponent(brand)}">${logo ? `<img src="${logo}" alt="${esc(brand)}" height="44" loading="lazy"><span class="vh">${esc(brand)}</span>` : `<strong>${esc(brand)}</strong>`}<small>${count} ${count === 1 ? 'modelo' : 'modelos'}</small></a>`;
   }).join('')}</div></div></section>`;
   return { title: 'Marcas', description: 'Marcas de herramientas y maquinaria disponibles en DCH.', body, current: 'marcas' };
 }

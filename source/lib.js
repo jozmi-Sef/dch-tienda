@@ -2,6 +2,8 @@
  * Piezas compartidas del sitio: datos de la tienda, iconos, tarjetas, cabecera y pie.
  * Todo devuelve HTML como texto; build.js lo ensambla en páginas.
  */
+const fs = require('fs');
+const path = require('path');
 const { CATEGORIES, CATEGORY_GROUPS, PRODUCTS, NEW, USED, BRANDS, slugify } = require('./data.js');
 
 /* ---------- Datos de la tienda ---------- */
@@ -24,6 +26,29 @@ const SITE = {
 const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const money = (value) => `S/ ${Number(value).toLocaleString('en-US')}`;
 const waLink = (text) => `https://wa.me/${SITE.wa}?text=${encodeURIComponent(text)}`;
+
+/* ---------- Logos de marca ---------- */
+const BRAND_DIR = path.join(__dirname, '..', 'site', 'img', 'brands');
+
+/** Ruta relativa del logo de una marca si existe el archivo; si no, null. */
+function brandLogo(brand) {
+  const slug = slugify(brand);
+  for (const ext of ['svg', 'png', 'webp', 'jpg']) {
+    if (fs.existsSync(path.join(BRAND_DIR, `${slug}.${ext}`))) return `img/brands/${slug}.${ext}`;
+  }
+  return null;
+}
+
+/** Medidas de un logo PNG (lee la cabecera del archivo). Devuelve null si no se puede. */
+function brandLogoSize(relativePath) {
+  if (!relativePath || !relativePath.endsWith('.png')) return null;
+  try {
+    const buffer = fs.readFileSync(path.join(__dirname, '..', 'site', relativePath));
+    return { w: buffer.readUInt32BE(16), h: buffer.readUInt32BE(20) };
+  } catch {
+    return null;
+  }
+}
 
 /* ---------- Iconos (trazo, 24 px) ---------- */
 const ICONS = {
@@ -323,6 +348,8 @@ module.exports = {
   BRANDS,
   CAT_ORDER,
   slugify,
+  brandLogo,
+  brandLogoSize,
   esc,
   money,
   waLink,
