@@ -159,10 +159,10 @@ function card(product, root = '', options = {}) {
 }
 
 /* ---------- Estructura común ---------- */
-function topbar() {
+function topbar(root = '') {
   return `<div class="topbar"><div class="wrap topbar__in">
-    <div class="topbar__group"><span class="topbar__item">${ic('truck')}Envíos a todo el Perú</span><span class="topbar__item">${ic('pin')}Lima en 24 horas</span></div>
-    <div class="topbar__group topbar__group--aside"><span class="topbar__item">${ic('clock')}${SITE.hours}</span><a class="topbar__item" href="https://wa.me/${SITE.wa}" target="_blank" rel="noopener">${ic('whatsapp')}${SITE.phone}</a></div>
+    <div class="topbar__group"><span class="topbar__item">${ic('truck')}Envíos a todo el Perú</span><span class="topbar__item">${ic('shield')}Garantía en todos los equipos</span><span class="topbar__item topbar__opt">${ic('pin')}Lima en 24 horas</span></div>
+    <div class="topbar__group topbar__group--aside"><a class="topbar__item" href="${root}ayuda.html#envios">${ic('box')}Seguimiento de pedido</a><a class="topbar__item" href="${root}ayuda.html">Ayuda</a><a class="topbar__item topbar__phone" href="https://wa.me/${SITE.wa}" target="_blank" rel="noopener">${ic('whatsapp')}${SITE.phone}</a></div>
   </div></div>`;
 }
 
@@ -183,7 +183,7 @@ function mega(root) {
 
 function header(root, current = '') {
   const link = (href, label, key, extra = '') => `<li><a class="nav__link" href="${root}${href}"${current === key ? ' aria-current="page"' : ''}>${label}${extra}</a></li>`;
-  return `${topbar()}
+  return `${topbar(root)}
   <header class="header">
     <div class="wrap masthead">
       <a class="logo-plate" href="${root}index.html" aria-label="${SITE.name}, inicio"><img src="${root}img/logo.png" alt="${SITE.short}: herramientas para construcción" width="104" height="59"></a>
@@ -276,7 +276,7 @@ function footer(root) {
       <div class="pay-chips" aria-label="Medios de pago"><span>VISA</span><span>MASTERCARD</span><span>YAPE</span><span>PLIN</span><span>TRANSFERENCIA</span></div>
     </div></div>
   </footer>
-  <a class="wa-float" href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ic('whatsapp')}<span class="wa-float__long">Cotiza por WhatsApp</span><span class="wa-float__short">Cotiza</span></a>`;
+  <a class="wa-float" href="${waLink('¡Hola DCH Tools! Quiero cotizar una herramienta.')}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><span class="wa-float__ball">${ic('whatsapp')}</span><span class="wa-float__label"><strong>Cotiza por WhatsApp</strong><small>Respondemos en minutos</small></span></a>`;
 }
 
 /* ---------- Versión de los archivos ----------

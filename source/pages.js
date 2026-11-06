@@ -39,17 +39,19 @@ const steps = (items, extra = '') => `<ol class="steps ${extra}">${items.map(([t
 const faq = (items) => `<div class="faq">${items.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join('')}</div>`;
 
 const REVIEWS = [
-  ['Jesús Tello', 'Maestro de obra', 'Equipos confiables y buena atención. Pedí unos generadores y llegaron en óptimas condiciones. Recomendado para quienes trabajamos en construcción.'],
-  ['David Quiroz', 'Técnico en herramientas', 'Productos de calidad, siempre encuentro lo que necesito. Estoy feliz porque puedo abastecer mi local.'],
-  ['Miguel Araujo', 'Maestro de obra', 'Buenos precios y buena atención. Todo llegó conforme a mi destino y en muy buen estado.'],
+  ['Jesús Tello', 'Maestro de obra · Lima', 'Equipos confiables y buena atención. Pedí unos generadores y llegaron en óptimas condiciones. Recomendado para quienes trabajamos en construcción.', 'Generador de luz', 5],
+  ['David Quiroz', 'Técnico en herramientas · Callao', 'Productos de calidad, siempre encuentro lo que necesito. Estoy feliz porque puedo abastecer mi local.', 'Rotomartillo SDS Plus', 5],
+  ['Miguel Araujo', 'Maestro de obra · Arequipa', 'Buenos precios y buena atención. Todo llegó conforme a mi destino y en muy buen estado.', 'Máquina de soldar inverter', 5],
 ];
 
+const STAR = '<svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l2.4 5.2 5.7.7-4.2 3.9 1.1 5.6L10 14.4 5 17.2l1.1-5.6L1.9 7.7l5.7-.7z"/></svg>';
+
 const reviews = () =>
-  `<p class="proto-note"><strong>Nota:</strong> este es un prototipo de las reseñas. Se reemplazan por reseñas reales de clientes.</p><div class="reviews">${REVIEWS.map(
-    ([name, role, quote]) => `<figure class="review" style="margin:0"><blockquote>${quote}</blockquote><figcaption><span class="avatar" aria-hidden="true">${name
-      .split(' ')
-      .map((part) => part[0])
-      .join('')}</span><span><strong>${name}</strong><small>${role}</small></span></figcaption></figure>`
+  `<p class="proto-note"><strong>Nota:</strong> este es un prototipo de las reseñas. Las fotos y los comentarios se reemplazan por los de clientes reales.</p><div class="reviews">${REVIEWS.map(
+    ([name, role, quote, bought, stars], index) => `<figure class="review" style="margin:0">
+      <div class="review__top"><span class="stars" role="img" aria-label="${stars} de 5 estrellas">${STAR.repeat(stars)}</span><span class="review__ok">${ic('shield')}Compra verificada</span></div>
+      <blockquote>${quote}</blockquote>
+      <figcaption><img class="avatar" src="img/mock/avatar-${index + 1}.svg" alt="" width="52" height="52" loading="lazy"><span><strong>${name}</strong><small>${role}</small><em class="review__item">Compró: ${bought}</em></span></figcaption></figure>`
   ).join('')}</div>`;
 
 const newsletter = () => `<div class="wrap sec--tight"><div class="news"><div><h2 class="h-lg">Entérate primero de las ofertas.</h2><p style="margin-top:10px">Equipos recién llegados y precios especiales, sin spam.</p></div>

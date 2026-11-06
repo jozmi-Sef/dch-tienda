@@ -420,9 +420,11 @@ p {
 
 /* ---------- Barra superior ---------- */
 .topbar {
-  background: var(--navy-800);
-  color: #c9d3f1;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
   font-size: 0.8125rem;
+  font-weight: 500;
 }
 
 .topbar__in {
@@ -441,7 +443,7 @@ p {
 }
 
 .topbar a:hover {
-  color: #fff;
+  color: var(--blue);
   text-decoration: underline;
 }
 
@@ -449,7 +451,22 @@ p {
   width: 15px;
   height: 15px;
   margin-inline-end: 6px;
-  color: var(--sky);
+  color: var(--blue);
+}
+
+.topbar__group--aside .topbar__item + .topbar__item {
+  padding-inline-start: 22px;
+  border-inline-start: 1px solid var(--line-strong);
+}
+
+.topbar__phone {
+  font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+  .topbar .topbar__opt {
+    display: none;
+  }
 }
 
 .topbar__item {
@@ -2204,19 +2221,60 @@ p {
 }
 
 .avatar {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  background: var(--navy);
-  color: #fff;
-  font-family: var(--f-display);
-  font-weight: 700;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--tint);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--line-strong);
 }
 
 .review small {
   display: block;
   color: var(--steel);
+}
+
+.review__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  width: 18px;
+  height: 18px;
+  fill: #f5a623;
+}
+
+.review__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #1b7a43;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.review__ok .i {
+  width: 15px;
+  height: 15px;
+}
+
+.review__item {
+  display: block;
+  margin-top: 2px;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
 }
 
 /* ---------- Preguntas ---------- */
@@ -2413,36 +2471,63 @@ p {
 
 .wa-float {
   position: fixed;
-  right: max(16px, env(safe-area-inset-right, 0px));
+  left: max(16px, env(safe-area-inset-left, 0px));
   bottom: max(16px, env(safe-area-inset-bottom, 0px));
   z-index: 55;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 20px 12px 14px;
-  border-radius: 999px;
+  color: var(--ink);
+}
+
+.wa-float__ball {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
   background: #1fa855;
-  box-shadow: 0 14px 30px -10px rgb(11 143 92 / 70%);
+  box-shadow: 0 12px 26px -8px rgb(11 143 92 / 75%);
   color: #fff;
-  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+.wa-float:hover .wa-float__ball {
+  transform: scale(1.06);
 }
 
 .wa-float .i {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
 }
 
-.wa-float__short {
-  display: none;
+.wa-float__label {
+  display: grid;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 24px -12px rgb(0 12 58 / 45%);
+  line-height: 1.25;
+}
+
+.wa-float__label strong {
+  font-size: 0.875rem;
+}
+
+.wa-float__label small {
+  color: var(--steel);
+  font-size: 0.75rem;
 }
 
 @media (max-width: 720px) {
-  .wa-float__long {
+  .wa-float__label small {
     display: none;
   }
 
-  .wa-float__short {
-    display: inline;
+  .wa-float__label strong {
+    font-size: 0.8125rem;
   }
 }
 
@@ -3935,12 +4020,8 @@ p {
 
 /* Celulares muy chicos: el botón flotante de WhatsApp queda solo con el icono */
 @media (max-width: 360px) {
-  .wa-float__short {
+  .wa-float__label {
     display: none;
-  }
-
-  .wa-float {
-    padding: 13px;
   }
 }
 
@@ -4094,5 +4175,25 @@ p {
   .brands__track {
     width: auto;
     overflow-x: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    font-size: 0.75rem;
+  }
+
+  .topbar__in {
+    justify-content: center;
+    min-height: 34px;
+  }
+
+  .topbar__group {
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .topbar .i {
+    margin-inline-end: 4px;
   }
 }
