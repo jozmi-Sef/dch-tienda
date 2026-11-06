@@ -45,7 +45,7 @@ const REVIEWS = [
 ];
 
 const reviews = () =>
-  `<div class="reviews">${REVIEWS.map(
+  `<p class="proto-note"><strong>Nota:</strong> este es un prototipo de las reseñas. Se reemplazan por reseñas reales de clientes.</p><div class="reviews">${REVIEWS.map(
     ([name, role, quote]) => `<figure class="review" style="margin:0"><blockquote>${quote}</blockquote><figcaption><span class="avatar" aria-hidden="true">${name
       .split(' ')
       .map((part) => part[0])
