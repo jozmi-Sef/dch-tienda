@@ -411,7 +411,7 @@ ${includes ? `<section class="sec"><div class="wrap">${secHead({ tag: '¿Qué in
     .map(([name, desc], index) => `<article class="service${index === 0 ? ' service--main' : ''}"><h3 class="h-md">${name}</h3><p class="lead">${desc}</p></article>`)
     .join('')}</div></div></section>` : ''}
 <section class="sec sec--white"><div class="wrap">${secHead({ tag: '¿Cómo funciona?', title: how.title })}${steps(how.steps)}</div></section>
-<section class="sec"><div class="wrap">${secHead({ tag: 'Beneficios', title: benefits.title })}<ul class="promises" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 40px">${benefits.items
+<section class="sec"><div class="wrap">${secHead({ tag: 'Beneficios', title: benefits.title })}<ul class="promises promises--2col">${benefits.items
     .map(([icon, name, desc]) => `<li>${ic(icon)}<div><strong>${name}</strong><span>${desc}</span></div></li>`)
     .join('')}</ul></div></section>
 <section class="sec sec--white"><div class="wrap">${secHead({ tag: 'Preguntas frecuentes', title: 'Lo que más nos preguntan' })}${faq(questions)}</div></section>
@@ -474,7 +474,7 @@ function about() {
     <li><b>Hoy</b><div><strong>Tienda online</strong><span>Llevamos nuestro catálogo a la web, con compra directa y atención rápida por WhatsApp.</span></div></li>
   </ul></div></section>
 <section class="sec"><div class="wrap">${secHead({ tag: 'Por qué elegirnos', title: 'Lo que puedes comprobar de nosotros' })}
-  <ul class="promises" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 40px">
+  <ul class="promises promises--2col">
     <li>${ic('store')}<div><strong>Desde 2019 en el rubro</strong><span>Atendemos a maestros de obra, técnicos, contratistas, ferreterías y empresas de construcción.</span></div></li>
     <li>${ic('box')}<div><strong>${NEW.length} modelos de ${BRANDS.length} marcas</strong><span>Stock inmediato en Lima para venta y alquiler, sin esperas.</span></div></li>
     <li>${ic('shield')}<div><strong>Garantía en productos seleccionados</strong><span>Equipos originales. Las condiciones de garantía te las informamos antes de pagar.</span></div></li>
